@@ -106,7 +106,7 @@ class AppExtension extends AbstractExtension implements GlobalsInterface
 
 ----> Rend genres accessible partout sans le passer dans chaque contrôleur.
 
-Avant je passe Book::GENRES dans tous les contrôleurs et sa faisait des warning symphony que je faisais du Repeat Yourself. Donc en regardant la doc Symfony et medium après avoir demandé une solution à chatgpt, j'avais reussi à créer une extension twig.
+Avant je passais Book::GENRES dans tous les contrôleurs et sa faisait des warning symphony car  je faisais du Repeat Yourself. Donc en regardant la doc Symfony et medium après avoir demandé une solution à chatgpt, j'avais reussi à créer une extension twig.
 
 
 
@@ -146,7 +146,7 @@ services:
 
 ---> Corrige un bug où Twig ne trouvait pas le service.
 
----> Corrigé grâce à IA debug (bin/console debug:container).
+---> Corrigé grâce à IA chatgpt debug (bin/console debug:container).
 
 
 
