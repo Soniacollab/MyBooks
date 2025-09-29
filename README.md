@@ -22,15 +22,15 @@ Trouvé dans la doc Symfony (Slugger) pour générer directement un slug à part
 
 $qb = $this->bookRepository->createQueryBuilder('b')
 
-&nbsp;   ->orderBy('b.createdAt', 'DESC');
+\&nbsp;   ->orderBy('b.createdAt', 'DESC');
 
 
 
 if ($search) {
 
-&nbsp;   $qb->andWhere('b.title LIKE :search')
+\&nbsp;   $qb->andWhere('b.title LIKE :search')
 
-&nbsp;      ->setParameter('search', '%' . $search . '%');
+\&nbsp;      ->setParameter('search', '%' . $search . '%');
 
 }
 
@@ -38,9 +38,9 @@ if ($search) {
 
 if ($genre) {
 
-&nbsp;   $qb->andWhere('b.genre = :genre')
+\&nbsp;   $qb->andWhere('b.genre = :genre')
 
-&nbsp;      ->setParameter('genre', $genre);
+\&nbsp;      ->setParameter('genre', $genre);
 
 }
 
@@ -48,7 +48,7 @@ if ($genre) {
 
 if ($limit) {
 
-&nbsp;   $qb->setMaxResults($limit);
+\&nbsp;   $qb->setMaxResults($limit);
 
 }
 
@@ -86,17 +86,17 @@ class AppExtension extends AbstractExtension implements GlobalsInterface
 
 {
 
-&nbsp;   public function getGlobals(): array
+\&nbsp;   public function getGlobals(): array
 
-&nbsp;   {
+\&nbsp;   {
 
-&nbsp;       return \[
+\&nbsp;       return \\\[
 
-&nbsp;           'genres' => Book::GENRES
+\&nbsp;           'genres' => Book::GENRES
 
-&nbsp;       ];
+\&nbsp;       ];
 
-&nbsp;   }
+\&nbsp;   }
 
 }
 
@@ -116,29 +116,29 @@ Avant je passe Book::GENRES dans tous les contrôleurs et sa faisait des warning
 
 parameters:
 
-&nbsp;   upload\_dir: '%kernel.project\_dir%/public/uploads/covers'
+\&nbsp;   upload\\\_dir: '%kernel.project\\\_dir%/public/uploads/covers'
 
 
 
 services:
 
-&nbsp;   \_defaults:
+\&nbsp;   \\\_defaults:
 
-&nbsp;       autowire: true
+\&nbsp;       autowire: true
 
-&nbsp;       autoconfigure: true
+\&nbsp;       autoconfigure: true
 
-&nbsp;       public: false
+\&nbsp;       public: false
 
 
 
-&nbsp;   \_instanceof:
+\&nbsp;   \\\_instanceof:
 
-&nbsp;       App\\Service\\ImageUploader:
+\&nbsp;       App\\\\Service\\\\ImageUploader:
 
-&nbsp;           bind:
+\&nbsp;           bind:
 
-&nbsp;               $uploadDir: '%upload\_dir%'
+\&nbsp;               $uploadDir: '%upload\\\_dir%'
 
 
 
@@ -192,11 +192,11 @@ trait BookFormTrait
 
 {
 
-&nbsp;   public function handleBookForm(Book $book, Request $request, BookManager $bookManager, bool $isAdminRedirect = false, bool $isEdit = false): ?Response
+\&nbsp;   public function handleBookForm(Book $book, Request $request, BookManager $bookManager, bool $isAdminRedirect = false, bool $isEdit = false): ?Response
 
-&nbsp;   {
+\&nbsp;   {
 
-&nbsp;   }
+\&nbsp;   }
 
 }
 
@@ -238,7 +238,10 @@ Utilisation de la doc Symfony pour les parties officielles : auth, services, upl
 
 Utilisation d’idées Medium pour Twig Extension et preview image.
 
-
+\&nbsp;
 
 Utilisation de l’IA pour debug et simplification du code (DRY et pagination).
+
+
+
 
