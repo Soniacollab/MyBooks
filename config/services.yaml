@@ -1,0 +1,36 @@
+# config/services.yaml
+
+parameters:
+    upload_dir: '%kernel.project_dir%/public/uploads/covers'
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    # bind fournit automatiquement la valeur pour $uploadDir
+    _instanceof:
+        App\Service\ImageUploader:
+            bind:
+                $uploadDir: '%upload_dir%'
+
+    # services explicites publics si besoin
+    App\Service\BookManager:
+        arguments:
+            $imageUploader: '@App\Service\ImageUploader'
+        public: true
+
+    # autowire tous les controllers
+    App\Controller\:
+        resource: '../src/Controller'
+        tags: ['controller.service_arguments']
+
+    # autowire le reste des services dans src/
+    App\:
+        resource: '../src/'
+        exclude: '../src/{Entity,Migrations,Tests}'
+
+    App\Twig\AppExtension:
+        tags: [ 'twig.extension' ]
+

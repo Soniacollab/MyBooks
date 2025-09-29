@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+    <main>
+        <!-- Titre de la page -->
+        <div class="p-3 mx-auto text-center">
+            <h1 class="display-4">Livres</h1>
+        </div>
+
+        <!-- Contenu de la page -->
+        <div class="py-5 bg-light">
+            <div class="container">
+                <div class="row">
+                    {% if books is empty %}
+                        <p class="text-center text-muted">Aucun livre trouvé.</p>
+
+                    {% else %}
+                        {% for book in books %}
+                            {% include 'partials/_card.html.twig' %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

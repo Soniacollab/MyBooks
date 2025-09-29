@@ -1,0 +1,75 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ path('default_home') }}">MyBooks</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('default_home') }}">Accueil</a>
+                </li>
+                {% if app.user %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('book_create') }}">Rédiger un livre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('book_my_books') }}">Voir mes livres</a>
+                    </li>
+                {% endif %}
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('admin_dashboard') }}">Dashboard Admin</a>
+                    </li>
+                {% endif %}
+            </ul>
+
+            <div class="d-flex mb-2">
+                <div class="d-flex mb-2">
+                    {# Formulaire recherche #}
+                    {% if is_granted('ROLE_ADMIN') %}
+                        {% set search_route = 'admin_dashboard' %}
+                    {% else %}
+                        {% set search_route = 'default_home' %}
+                    {% endif %}
+
+                    <form method="get" action="{{ path(search_route) }}" class="d-flex me-2">
+                        <input type="search" name="search" value="{{ app.request.query.get('search') }}" class="form-control me-2" placeholder="Rechercher un livre...">
+                        <button type="submit" class="btn btn-primary">Rechercher</button>
+                    </form>
+
+                    <form method="get" action="{{ path(search_route) }}" class="d-flex">
+                        <select name="genre" class="form-select me-2">
+                            <option value="">Tous les genres</option>
+                            {% for g in genres %}
+                                <option value="{{ g }}" {% if genre is defined and genre == g %}selected{% endif %}>{{ g }}</option>
+                            {% endfor %}
+                        </select>
+                        <button type="submit" class="btn btn-secondary">Filtrer</button>
+                    </form>
+
+
+                </div>
+
+            </div>
+
+
+
+            <ul class="navbar-nav ms-3">
+                {% if app.user %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_logout') }}">Déconnexion</a>
+                    </li>
+                {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('user_register') }}">Inscription</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>

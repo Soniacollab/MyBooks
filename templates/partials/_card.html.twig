@@ -1,0 +1,21 @@
+<div class="col-md-4 col-sm-6 mb-4">
+    <div class="card h-100">
+        <img src="{{ asset('uploads/covers/' ~ book.coverImage) }}" class="book-cover" alt="{{ book.title }}">
+        <div class="card-body">
+            <h5 class="card-title">{{ book.title }}</h5>
+            <span class="badge bg-secondary mb-2">{{ book.genre }}</span>
+            <p class="card-text">Auteur : {{ book.author }}</p>
+
+            <span class="text-muted d-block mb-3">Rédigé par {{ book.user.firstname }} {{ book.user.lastname ?? '' }}</span>
+
+            <div class="d-flex flex-wrap gap-2">
+                <a href="{{ path('book_showdetails', {'slug': book.slug}) }}" class="btn btn-primary btn-sm">Voir le livre</a>
+
+                {% if app.user and (app.user.id == book.user.id or is_granted('ROLE_ADMIN')) %}
+                    <a href="{{ path('book_edit', {'id' : book.id}) }}" class="btn btn-warning btn-sm">Modifier</a>
+                    <a href="{{ path('book_delete', {'id' : book.id}) }}" class="btn btn-danger btn-sm">Supprimer</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

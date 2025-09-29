@@ -1,0 +1,63 @@
+{# templates/book/form.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Rédiger un livre{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/jodit@latest/es2021/jodit.fat.min.css" />
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="https://cdn.jsdelivr.net/npm/jodit@latest/es2021/jodit.fat.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const textarea = document.querySelector('#book_description');
+            if (textarea) {
+                Jodit.make(textarea);
+            }
+
+            window.previewImage = function(event) {
+                const input = event.target;
+                const preview = document.getElementById('imagePreview');
+                if (input.files && input.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        preview.src = e.target.result;
+                        preview.style.display = 'block';
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                } else {
+                    preview.src = '';
+                    preview.style.display = 'none';
+                }
+            }
+        });
+    </script>
+{% endblock %}
+
+{% block body %}
+    <div class="container py-5">
+        <div class="col-8 mx-auto">
+            {{ form_start(form, {'attr': {'novalidate':'novalidate'}}) }}
+            {{ form_row(form.title) }}
+            {{ form_row(form.author) }}
+            {{ form_row(form.description) }}
+            {{ form_row(form.genre) }}
+            {{ form_row(form.coverImage, {'attr': {'onchange':'previewImage(event)'}}) }}
+
+            <div class="mb-3">
+                <img id="imagePreview"
+                     src="{{ book.coverImage ? asset('uploads/covers/' ~ book.coverImage) : '' }}"
+                     alt=""
+                     style="max-width:200px; display: {{ book.coverImage ? 'block' : 'none' }}">
+            </div>
+
+            {{ form_row(form.submit) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

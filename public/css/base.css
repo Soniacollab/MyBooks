@@ -1,0 +1,70 @@
+/* Container et article */
+.container {
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.article-content {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: #333;
+}
+
+/* Badges de genre */
+.badge {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+/* Titres */
+h1.display-4 {
+    font-size: 2.8rem;
+    color: #222;
+}
+
+/* Auteur */
+.d-flex.align-items-center img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+/* Image principale */
+figure img {
+    max-width: 100%;
+    border-radius: 0.5rem;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+figure figcaption {
+    font-size: 0.95rem;
+    color: #666;
+}
+
+/* Lien retour */
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    h1.display-4 {
+        font-size: 2rem;
+    }
+
+    .article-content {
+        font-size: 1rem;
+    }
+}
+.book-cover {
+    height: 250px;     /* même hauteur pour toutes */
+    width: auto;       /* largeur proportionnelle */
+    object-fit: contain;  /* pas de recadrage, image complète visible */
+    display: block;
+    margin: 0 auto;    /* centre si largeur variable */
+}
+

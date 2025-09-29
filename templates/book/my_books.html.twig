@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes livres{% endblock %}
+
+{% block body %}
+    <div class="container py-5">
+        <h1>Mes livres</h1>
+
+        <div class="row">
+            {% for book in books %}
+                {% include 'partials/_card.html.twig' with {'book': book} %}
+            {% else %}
+                <p>Aucun livre trouvé.</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

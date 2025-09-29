@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ book.title }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <article class="py-5">
+
+                    <!-- En-tête -->
+                    <header class="mb-5 text-center">
+                        <span class="badge bg-primary mb-2">{{ book.genre }}</span>
+                        <div><small class="text-muted">{{ book.createdAt | date('d/m/Y') }}</small></div>
+                        <h1 class="display-4 fw-bold my-3">{{ book.title }}</h1>
+
+                        {% if book.coverImage %}
+                            <img src="{{ asset('uploads/covers/' ~ book.coverImage) }}"
+                                 class="book-cover rounded"
+                                 alt="{{ book.title }}">
+                        {% endif %}
+
+                        <div>
+                            <strong>Rédigé par {{ book.user.firstname }} {{ book.user.lastname ?? '' }}</strong>
+                        </div>
+                    </header>
+
+                    <!-- Contenu -->
+                    <div class="article-content mb-5">
+                        {{ book.description | raw }}
+                    </div>
+
+                    <!-- Bouton retour -->
+                    <div class="text-center mt-4">
+                        <a href="{{ is_granted('ROLE_ADMIN') ? path('admin_dashboard') : path('default_home') }}"
+                           class="btn btn-primary">
+                            Retour à la page d'accueil
+                        </a>
+                    </div>
+
+                </article>
+            </div>
+        </div>
+    </div>
+{% endblock %}
