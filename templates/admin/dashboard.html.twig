@@ -15,13 +15,15 @@
                 <div class="row">
                     {% if books is empty %}
                         <p class="text-center text-muted">Aucun livre trouvé.</p>
-
                     {% else %}
                         {% for book in books %}
                             {% include 'partials/_card.html.twig' %}
                         {% endfor %}
                     {% endif %}
                 </div>
+
+                {# Inclut la pagination depuis le partial #}
+                {% include 'partials/_pagination.html.twig' %}
             </div>
         </div>
     </main>

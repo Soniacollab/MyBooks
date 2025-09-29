@@ -22,29 +22,8 @@
                     {% endif %}
                 </div>
 
-                <!-- Pagination Bootstrap -->
-                {% if totalPages > 1 %}
-                    <nav aria-label="Pagination">
-                        <ul class="pagination justify-content-center mt-4">
-                            {# Bouton "Précédent" #}
-                            <li class="page-item {% if page <= 1 %}disabled{% endif %}">
-                                <a class="page-link" href="?page={{ page - 1 }}&search={{ search }}&genre={{ genre }}">Précédent</a>
-                            </li>
-
-                            {# Liens pour chaque page #}
-                            {% for p in 1..totalPages %}
-                                <li class="page-item {% if p == page %}active{% endif %}">
-                                    <a class="page-link" href="?page={{ p }}&search={{ search }}&genre={{ genre }}">{{ p }}</a>
-                                </li>
-                            {% endfor %}
-
-                            {# Bouton "Suivant" #}
-                            <li class="page-item {% if page >= totalPages %}disabled{% endif %}">
-                                <a class="page-link" href="?page={{ page + 1 }}&search={{ search }}&genre={{ genre }}">Suivant</a>
-                            </li>
-                        </ul>
-                    </nav>
-                {% endif %}
+                {# Inclut la pagination depuis le partial #}
+                {% include 'partials/_pagination.html.twig' %}
             </div>
         </div>
     </main>

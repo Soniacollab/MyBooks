@@ -16,5 +16,11 @@
                 </div>
             {% endfor %}
         </div>
+
+        {# Include pagination partial #}
+        {% include 'partials/_pagination.html.twig' with {
+            'page': page,
+            'totalPages': totalPages
+        } %}
     </div>
 {% endblock %}
