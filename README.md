@@ -186,11 +186,33 @@ $totalPages = (int) ceil($totalBooks / $limit);
 
 
 
+🔹 Trait BookFormTrait pour DRY dans les controllers
+
+trait BookFormTrait
+
+{
+
+&nbsp;   public function handleBookForm(Book $book, Request $request, BookManager $bookManager, bool $isAdminRedirect = false, bool $isEdit = false): ?Response
+
+&nbsp;   {
+
+&nbsp;   }
+
+}
+
+
+
+-----> J'ai trouvé la solution avec medium et ia pour créer un Trait et éviter la répétition du formulaire.
+
+-----> Inspiré de la doc Symfony et Medium pour appliquer le DRY.
+
+
+
 📚 Sources utilisées
 
 
 
-Docs Symfony : slug, upload, services, QueryBuilder, sécurité, Twig globals.
+Docs Symfony : slug ascii, services, QueryBuilder, sécurité, Twig globals.
 
 
 
@@ -198,37 +220,25 @@ Docs Doctrine : QueryBuilder.
 
 
 
-Medium : idée AppExtension Twig.
+Medium : idée AppExtension Twig, preview image.
 
 
 
-IA (ChatGPT) : debug services.yaml, pagination, DRY avec BookSearch.
+IA (ChatGPT) : debug services.yaml, debug pagination, DRY avec services.
 
 
 
+📝 Résumé étudiant
 
 
 
+Utilisation de la doc Symfony pour les parties officielles : auth, services, upload, slug.
 
 
 
---------- Résumé étudiant ---------------
+Utilisation d’idées Medium pour Twig Extension et preview image.
 
 
 
-J’ai utilisé doc Symfony pour les parties officielles (auth, services, upload, slug).
-
-
-
-J’ai pris une idée Medium pour Twig Extension.
-
-
-
-J’ai utilisé IA quand j’avais des bugs (services.yaml, DRY avec services, pagination).
-
-
-
-
-
-
+Utilisation de l’IA pour debug et simplification du code (DRY et pagination).
 
