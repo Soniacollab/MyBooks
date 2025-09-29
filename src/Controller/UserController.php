@@ -36,7 +36,7 @@ class UserController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            $this->addFlash('success', "Félicitation vous pouvez vous connecter.");
+            $this->addFlash('success', "Inscription réusssie ! Vous pouvez vous connecter.");
 
             return $this->redirectToRoute('app_login');
         }

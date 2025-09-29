@@ -18,42 +18,33 @@ class UserRegisterType extends AbstractType
     {
         $builder
             ->add('firstname', TextType::class, [
-                'label' => 'Saisissez votre prénom',
-                'attr' => [
-                    'placeholder' => 'Saisissez votre prénom'
-                ]
+                'label' => 'Prénom',
+                'attr' => ['placeholder' => 'Saisissez votre prénom']
             ])
             ->add('lastname', TextType::class, [
-                'label' => 'Saisissez votre nom',
-                'attr' => [
-                    'placeholder' => 'Saisissez votre nom'
-                ]
+                'label' => 'Nom',
+                'attr' => ['placeholder' => 'Saisissez votre nom']
             ])
             ->add('email', EmailType::class, [
-                'label' => 'Saisissez votre email',
-                'attr' => [
-                    'placeholder' => 'Saisissez votre e-mail'
-                ]
-            ])
-            ->add('password', PasswordType::class, [
-                'label' => 'Saisissez votre mot de passe',
-                'attr' => [
-                    'placeholder' => 'Saisissez votre mot de passe'
-                ]
-            ])
-            ->add('submit', SubmitType::class, [
-                'label' => 'Valider mon inscription',
-                'attr' => [
-                    'class' => 'btn w-100 btn-outline-dark'
-                ]
+                'label' => 'Email',
+                'attr' => ['placeholder' => 'Saisissez votre e-mail']
             ])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'invalid_message' => 'Les mots de passe doivent correspondre.',
-                'first_options'  => ['label' => 'Mot de passe'],
-                'second_options' => ['label' => 'Confirmez le mot de passe'],
+                'first_options'  => [
+                    'label' => 'Mot de passe',
+                    'attr' => ['placeholder' => 'Saisissez votre mot de passe']
+                ],
+                'second_options' => [
+                    'label' => 'Confirmez le mot de passe',
+                    'attr' => ['placeholder' => 'Confirmez votre mot de passe']
+                ],
             ])
-        ;
+            ->add('submit', SubmitType::class, [
+                'label' => 'Valider mon inscription',
+                'attr' => ['class' => 'btn w-100 btn-outline-dark']
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

@@ -26,6 +26,8 @@ trait BookFormTrait
         $form = $this->createForm(BookType::class, $book);
         $form->handleRequest($request);
 
+
+        // Si le formulaire est soumis, on enregistre les données
         if ($form->isSubmitted() && $form->isValid()) {
             $bookManager->saveBook($book, $form->get('coverImage')->getData());
             $this->addFlash('success', $isEdit ? 'Livre modifié avec succès' : 'Livre publié avec succès');
@@ -34,9 +36,11 @@ trait BookFormTrait
                 return $this->redirectToRoute('admin_dashboard');
             }
 
-            return $this->redirectToRoute('default_home');
+            return $this->redirectToRoute('book_my_books');
         }
 
+
+        // Afficher la vue
         return $this->render('book/form.html.twig', [
             'form' => $form->createView(),
             'book' => $book,

@@ -3,10 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Book;
-use App\Entity\User;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -36,6 +34,7 @@ class BookType extends AbstractType
                 'label' => 'Genre',
                 'choices' => array_combine(Book::GENRES, Book::GENRES),
                 'placeholder' => 'Choisissez un genre',
+                'required' => true,
             ])
             ->add('coverImage', FileType::class, [
                 'label' => 'Image',
@@ -57,6 +56,10 @@ class BookType extends AbstractType
 
     public function configureOptions(OptionsResolver $resolver): void
     {
+        /** Ici, on configure les options par défaut du formulaire en associant
+         * le formulaire à l'entité Book. Cela permettra à Symfony de lier automatiquement les champs du formulaire
+         * aux propriétés de l'entité Book lors de la soumission
+         */
         $resolver->setDefaults([
             'data_class' => Book::class,
         ]);

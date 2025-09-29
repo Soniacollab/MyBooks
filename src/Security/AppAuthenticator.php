@@ -61,7 +61,7 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($this->urlGenerator->generate('admin_dashboard'));
         }
 
-        return new RedirectResponse($this->urlGenerator->generate('default_home'));
+        return new RedirectResponse($this->urlGenerator->generate('book_my_books'));
     }
 
 }

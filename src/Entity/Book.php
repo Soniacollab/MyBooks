@@ -38,6 +38,7 @@ class Book
     ];
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: "Veuillez sélectionner un genre.")]
     #[Assert\Choice(choices: Book::GENRES, message: 'Choisissez un genre valide.')]
     private ?string $genre = null;
 

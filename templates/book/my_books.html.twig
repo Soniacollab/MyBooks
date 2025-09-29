@@ -10,7 +10,10 @@
             {% for book in books %}
                 {% include 'partials/_card.html.twig' with {'book': book} %}
             {% else %}
-                <p>Aucun livre trouvé.</p>
+                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 200px;">
+                    <p>Vous n'avez aucun livre rédigé.</p>
+                    <a class="btn btn-primary" href="{{ path('book_create') }}">Rédiger un livre</a>
+                </div>
             {% endfor %}
         </div>
     </div>
